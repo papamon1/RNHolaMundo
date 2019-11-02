@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 
 
 class Texto extends React.Component{
@@ -11,6 +11,7 @@ class Texto extends React.Component{
     this.setState({texto:'Adios mundo cruel!'})
   }
 
+
   render(){
     const { texto } = this.state;
     return <Text onPress={this.handlePress}>{texto}</Text>;
@@ -19,34 +20,80 @@ class Texto extends React.Component{
 };
 
 export default class App extends React.Component {
+  
+  state={};
+
+  handlePress=()=>{
+    alert(`Tu nombre es ${this.state.text}`);
+  }
+
+  handleChange = text =>{
+    console.log(text);
+    this.setState({text});
+  }
+  
   render(){
+
+    const { text }=this.state;
+
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Asd</Text>
-        <Text style={styles.text2}>Asd</Text>
-        <Text style={styles.text3}>Asd</Text>
-      </View>
+        <TextInput 
+          placeholder="Chacaito"
+          onChangeText={this.handleChange}
+        />
+        <Button
+          title="Titulo del boton"
+          onPress={this.handlePress}
+        />
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handlePress}
+        >
+          <Text>Aceptar</Text>
+        </TouchableHighlight>
+
+        <TouchableWithoutFeedback
+          style={styles.button}
+          onPress={this.handlePress}
+        >
+          <Text>Aceptar</Text>
+        </TouchableWithoutFeedback>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={this.handlePress}
+        >
+          <Text>Aceptar</Text>
+        </TouchableOpacity>
+      <Text>{text && `Mi nombre es ${text}`}</Text>
+      </View>      
     );
   }
 }
 
 const styles = StyleSheet.create({
+  button:{
+    backgroundColor: 'cyan',
+    height: 50,
+    padding: 15
+  },
   text:{
-    flex:1,
+    
     height:100,
     width:100,
     backgroundColor:"brown",
     color:"red"
   },
   text2:{
-    flex:2,
+    
     height:100,
     width:100,
     backgroundColor:"yellow",
     color:"red"
   },
   text3:{
-    flex:3,
+    
     height:100,
     width:100,
     backgroundColor:"orange",
@@ -54,9 +101,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "column",
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'flex-start'
+    justifyContent: 'space-around'
   }
 });
