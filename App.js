@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity, FlatList } from 'react-native';
 
 
 class Texto extends React.Component{
@@ -37,37 +37,30 @@ export default class App extends React.Component {
     const { text }=this.state;
 
     return (
-      <View style={styles.container}>
-        <TextInput 
-          placeholder="Chacaito"
-          onChangeText={this.handleChange}
-        />
-        <Button
-          title="Titulo del boton"
-          onPress={this.handlePress}
-        />
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.handlePress}
+      <View>
+        <FlatList
+          data={[
+            {name: "Eduardo", key:'1'},
+            {name: "Eduardo", key:'2'},
+            {name: "Eduardo", key:'3'},
+            {name: "Eduardo", key:'4'},
+            {name: "Eduardo", key:'5'},
+            {name: "Eduardo", key:'6'},
+            {name: "Eduardo", key:'7'},
+            {name: "Eduardo", key:'8'},
+            {name: "Eduardo", key:'9'},
+            {name: "Eduardo", key:'10'},
+            {name: "Eduardo", key:'11'},
+            {name: "Eduardo", key:'12'},
+          ]}
+          renderItem={({item})=>(
+            <Text style={{fontSize:80}}>{item.name}</Text>
+        )}
         >
-          <Text>Aceptar</Text>
-        </TouchableHighlight>
-
-        <TouchableWithoutFeedback
-          style={styles.button}
-          onPress={this.handlePress}
-        >
-          <Text>Aceptar</Text>
-        </TouchableWithoutFeedback>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={this.handlePress}
-        >
-          <Text>Aceptar</Text>
-        </TouchableOpacity>
-      <Text>{text && `Mi nombre es ${text}`}</Text>
-      </View>      
+       
+        </FlatList>      
+      </View>
+      
     );
   }
 }
